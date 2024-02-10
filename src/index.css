@@ -1,5 +1,10 @@
 :root {
-  background:rgb(218, 218, 218);
+  --bg-color : rgb(218, 218, 218);
+  --bg-color : rgb(218, 218, 218);
+  background: var(--bg-color)
 
 }
-.app {  min-height: 100vh; }
+.app {  
+  min-height: 100vh; 
+  background: var(--bg-color)
+}

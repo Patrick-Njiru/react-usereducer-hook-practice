@@ -2,7 +2,7 @@ const reducer = (state, action) => {
   if (action.type == 'ADD_PERSON') {
     const newPerson = {
       ...action.payload,
-      id: new Date().getDate().toString()
+      id: new Date().getTime().toString()
     }
 
     return {
@@ -12,7 +12,7 @@ const reducer = (state, action) => {
       modalContent: 'Person added successfully'
     }
   }
-  if (action.type == 'EMPTY_PERSON') {
+  if (action.type == 'NO_VALUES') {
     return { 
       ...state,
       showModal: true,
@@ -22,12 +22,12 @@ const reducer = (state, action) => {
   if (action.type == 'REMOVE_PERSON') {
     return {
       ...state,
-      people: state.people.filter(person => person.id !== action.payload.id)
+      people: state.people.filter(person => person.id !== action.payload)
     }
   }
-  if (action.type == 'HIDE_MODAL') return { ...state, showModal: false }
+  if (action.type == 'CLOSE_MODAL') return { ...state, showModal: false }
            
-  throw new Error ('No Match For Action Type Found')
+  throw new Error ('No match for action type')
 }
 
 export { reducer }

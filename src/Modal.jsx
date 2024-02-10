@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const Modal = ({ modalDisplay, modalContent }) => {
+const Modal = ({ closeModal, modalContent }) => {
   const classes = modalContent == 'Person added successfully' ?
-    'alert alert-success fw-bold my-2' : 'alert alert-warning fw-bold my-2'
+    'alert alert-success fw-bold mt-3' : 'alert alert-warning fw-bold mt-3'
   
   useEffect(() => {
     setTimeout(() => {
-      modalDisplay()
+      closeModal()
     }, 3000);
   })
   
@@ -22,7 +22,7 @@ const Modal = ({ modalDisplay, modalContent }) => {
 
 Modal.propTypes = {
   modalContent: PropTypes.string.isRequired,
-  modalDisplay: PropTypes.any.isRequired
+  closeModal: PropTypes.any.isRequired
 }
 
   export default Modal

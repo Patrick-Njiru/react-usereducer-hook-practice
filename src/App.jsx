@@ -19,22 +19,20 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (person.firstName && person.lastName) {
-      dispatch({ type: 'ADD_PERSON', payload: person })
+      dispatch({ type: 'ADD_PERSON', payload: person})
       setPerson(defaultPerson)
     } else {
-      dispatch({type: 'EMPTY_PERSON'})
+      dispatch({type: 'NO_VALUES'})
     }
   }
 
-  const modalDisplay = () => { dispatch({type: 'HIDE_MODAL'})}
-
-  console.log('Re-render');
+  const closeModal = () => { dispatch({type: 'CLOSE_MODAL'})}
 
   return (
     <div className="app text-center">
-      {state.showModal && <Modal modalContent={state.modalContent} modalDisplay={modalDisplay} />}
+      {state.showModal && <Modal modalContent={state.modalContent} closeModal={closeModal} />}
 
-      <form className="form w-50 mx-auto mt-5">
+      <form className="form w-50 mx-auto mt-3">
         <fieldset className="form-floating my-3">
           <input
             type="text"
@@ -68,15 +66,24 @@ function App() {
         </button>
       </form>
       <div className="mt-5">
-        <h2 className='mb-3'>People</h2>
-        {state.people.map((person, index) => {
-          <p
-            className="list-item-group h4 text-center capitalize border border-top-0 border-secondary"
-            key={person.id || index}
+        <h2 className='mb-3 text-decoration-underline'>Available People</h2>
+        {state.people.map((person, index) =>
+          <div
+            className="fw-bold fst-italic lead text-capitalize border-bottom border-2 border-light py-1"
+            key={person.id}
           >
-            {`${person.firstName} ${person.lastName} `}
-          </p>
-        })}
+            <span className='me-5'>
+              {`${index + 1}. ${person.firstName}  ${person.lastName} `}
+            </span>
+            <button
+              type='button'
+              className=" ms-5 btn btn-danger btn-sm"
+              onClick={() => dispatch({ type: 'REMOVE_PERSON', payload: person.id })}
+            >
+              Remove
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

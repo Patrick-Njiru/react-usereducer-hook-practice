@@ -31,3 +31,8 @@ const reducer = (state, action) => {
 }
 
 export { reducer }
+
+// USE CASES FOR useReducer
+// when you have multiple pieces of state that depend on each other or on complex logic
+// to optimize performance by avoiding unnecessary re-renders or calculations
+// when you want to manage global or shared state across components
